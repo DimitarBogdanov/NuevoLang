@@ -260,7 +260,11 @@ public sealed class Tokenizer
 
                 default:
                 {
-                    if (Char.IsLetter(current)
+                    if (Char.IsWhiteSpace(current))
+                    {
+                        PushTokAndResetState();
+                    }
+                    else if (Char.IsLetter(current)
                         || current == '_'
                         || (_value.Length != 0 && Char.IsDigit(current))
                        )
