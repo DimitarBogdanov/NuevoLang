@@ -14,14 +14,14 @@ public sealed class Tokenizer
         Num
     }
 
-    public Tokenizer(StreamReader reader)
+    public Tokenizer(string source)
     {
-        _reader = reader;
+        _reader = new StringReader(source);
         _tokens = new LinkedList<Token>();
         _value = new StringBuilder();
     }
 
-    private readonly StreamReader      _reader;
+    private readonly StringReader      _reader;
     private readonly LinkedList<Token> _tokens;
     private readonly StringBuilder     _value;
 
@@ -34,7 +34,7 @@ public sealed class Tokenizer
 
     public void Tokenize()
     {
-        while (!_reader.EndOfStream)
+        while (_reader.Peek() > 0)
         {
             char current = (char)_reader.Read();
             char next = (char)_reader.Peek();
