@@ -274,6 +274,8 @@ public sealed class Tokenizer
                 }
             }
         }
+        
+        PushTokAndResetState();
     }
 
     /// <summary>
