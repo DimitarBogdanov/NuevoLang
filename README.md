@@ -149,6 +149,8 @@ main = function() {
 
 `^` - power operator
 
+`%` - modulo division
+
 #### 5.2. Comparison
 `==`, `!=` - equal, not equal
 
@@ -166,7 +168,11 @@ main = function() {
 
 `+=`, `-=`, etc. - compound assignment with arithmetic operators
 
-#### 5.5. If expression
+#### 5.5. Other operators
+
+`#` - length of dict, array, string
+
+#### 5.6. If expression
 Used as a ternary operator.
 ```
 drinkingAge = if country == "USA" 21 else 18
