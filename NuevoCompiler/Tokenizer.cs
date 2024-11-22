@@ -86,6 +86,20 @@ public sealed class Tokenizer
                 continue;
             }
 
+            if (Char.IsWhiteSpace(current))
+            {
+                PushTokAndResetState();
+            }
+            else if (Char.IsLetter(current)
+                     || current == '_'
+                     || (_value.Length != 0 && Char.IsDigit(current))
+                    )
+            {
+                _value.Append(current);
+                continue;
+            }
+
+            PushTokAndResetState();
             switch (current)
             {
                 case '+':
@@ -309,18 +323,6 @@ public sealed class Tokenizer
 
                 default:
                 {
-                    if (Char.IsWhiteSpace(current))
-                    {
-                        PushTokAndResetState();
-                    }
-                    else if (Char.IsLetter(current)
-                        || current == '_'
-                        || (_value.Length != 0 && Char.IsDigit(current))
-                       )
-                    {
-                        _value.Append(current);
-                        continue;
-                    }
 
                     // TODO: Error - unknown char in identifier
                     break;
