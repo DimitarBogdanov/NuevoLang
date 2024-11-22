@@ -251,10 +251,59 @@ public sealed class Tokenizer
                     QuickAddTok(TokenType.OpOr);
                     continue;
                 }
+                
+                case ':' when next == ':':
+                {
+                    _reader.Read();
+                    QuickAddTok(TokenType.OpDoubleColon);
+                    continue;
+                }
+
+                case ',':
+                {
+                    QuickAddTok(TokenType.OpComma);
+                    continue;
+                }
 
                 case '#':
                 {
                     QuickAddTok(TokenType.OpLength);
+                    continue;
+                }
+                
+                case '(':
+                {
+                    QuickAddTok(TokenType.ParenLeft);
+                    continue;
+                }
+                
+                case ')':
+                {
+                    QuickAddTok(TokenType.ParenRight);
+                    continue;
+                }
+                
+                case '{':
+                {
+                    QuickAddTok(TokenType.BraceLeft);
+                    continue;
+                }
+                
+                case '}':
+                {
+                    QuickAddTok(TokenType.BraceRight);
+                    continue;
+                }
+                
+                case '[':
+                {
+                    QuickAddTok(TokenType.BracketLeft);
+                    continue;
+                }
+                
+                case ']':
+                {
+                    QuickAddTok(TokenType.BracketRight);
                     continue;
                 }
 
@@ -323,42 +372,6 @@ public sealed class Tokenizer
                     "while"    => TokenType.KwWhile,
                     "handle"   => TokenType.KwHandle,
                     "ok"       => TokenType.KwHandleCase,
-
-                    "(" => TokenType.ParenLeft,
-                    ")" => TokenType.ParenRight,
-                    "{" => TokenType.BraceLeft,
-                    "}" => TokenType.BraceRight,
-                    "[" => TokenType.BracketLeft,
-                    "]" => TokenType.BracketRight,
-
-                    "::" => TokenType.OpDoubleColon,
-                    ","  => TokenType.OpComma,
-                    "==" => TokenType.OpEq,
-                    "!=" => TokenType.OpNEq,
-                    "<"  => TokenType.OpLess,
-                    ">"  => TokenType.OpGreater,
-                    "<=" => TokenType.OpLessEq,
-                    ">=" => TokenType.OpGreaterEq,
-
-                    "+" => TokenType.OpAdd,
-                    "-" => TokenType.OpSub,
-                    "*" => TokenType.OpMul,
-                    "/" => TokenType.OpDiv,
-                    "%" => TokenType.OpMod,
-                    "^" => TokenType.OpPow,
-
-                    "="  => TokenType.OpAssign,
-                    "+=" => TokenType.OpAssignAdd,
-                    "-=" => TokenType.OpAssignSub,
-                    "*=" => TokenType.OpAssignMul,
-                    "/=" => TokenType.OpAssignDiv,
-                    "%=" => TokenType.OpAssignMod,
-                    "^=" => TokenType.OpAssignPow,
-
-                    "&&" => TokenType.OpAnd,
-                    "||" => TokenType.OpOr,
-                    "!"  => TokenType.OpNot,
-                    "#"  => TokenType.OpLength,
 
                     _ => TokenType.Id
                 };
